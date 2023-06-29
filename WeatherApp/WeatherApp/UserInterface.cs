@@ -31,19 +31,14 @@ namespace WeatherApp
             {
                 // Get the weather information from the data object
                 string city = data.name;
-                string currentTempK = data.main.temp;
-                string currentTempF = ConvertKelvinToFahrenheit(currentTempK);
-                string currentTempC = ConvertKelvinToCelsius(currentTempK);
+                string currentTempF = data.main.temp;
                 string currentWeather = data.weather[0].main;
-                string windSpeed = data.wind.speed;
-                string windDir = data.wind.deg;
 
                 // Display the weather information in a formatted way
                 Console.WriteLine();
                 Console.WriteLine($"The current weather in {city} ({zip}) is:");
-                Console.WriteLine($"Temperature: {currentTempF} F / {currentTempC} C");
+                Console.WriteLine($"Temperature: {currentTempF} F");
                 Console.WriteLine($"Condition: {currentWeather}");
-                Console.WriteLine($"Wind: {windSpeed} mph {windDir}");
                 Console.WriteLine();
             }
             else
@@ -77,38 +72,6 @@ namespace WeatherApp
         {
             Console.WriteLine("Thank you for using the Weather App. Goodbye!");
             Environment.Exit(0);
-        }
-
-        // A helper method to convert temperature from Kelvin to Fahrenheit
-        public static string ConvertKelvinToFahrenheit(string kelvin)
-        {
-            // Convert the string to a double
-            double k = double.Parse(kelvin);
-
-            // Apply the conversion formula
-            double f = (k - 273.15) * 9 / 5 + 32;
-
-            // Round the result to one decimal place
-            f = Math.Round(f, 1);
-
-            // Convert the result to a string
-            return f.ToString();
-        }
-
-        // A helper method to convert temperature from Kelvin to Celsius
-        public static string ConvertKelvinToCelsius(string kelvin)
-        {
-            // Convert the string to a double
-            double k = double.Parse(kelvin);
-
-            // Apply the conversion formula
-            double c = k - 273.15;
-
-            // Round the result to one decimal place
-            c = Math.Round(c, 1);
-
-            // Convert the result to a string
-            return c.ToString();
         }
     }
 }

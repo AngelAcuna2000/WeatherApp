@@ -54,7 +54,7 @@ namespace WeatherApp
         }
 
         // A method to get the response object from the API request
-        public static HttpResponseMessage? GetResponse()
+        public static string? GetResponse()
         {
             try
             {
@@ -65,10 +65,10 @@ namespace WeatherApp
                 HttpClient client = new HttpClient();
 
                 // Use the OpenWeather API endpoint with a dummy zip code and API key as query parameters
-                var weatherUrl = $"https://api.openweathermap.org/data/2.5/weather?zip=00000,us&appid={apiKey}";
+                var weatherUrl = $"https://api.openweathermap.org/data/2.5/weather?zip=28104,us&appid={apiKey}&units=metric";
 
                 // Make an async GET request to the API endpoint and get the response
-                HttpResponseMessage response = client.GetAsync(weatherUrl).Result;
+                string response = client.GetStringAsync(weatherUrl).Result;
 
                 // Return the response object
                 return response;
